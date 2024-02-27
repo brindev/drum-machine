@@ -1,0 +1,540 @@
+:root[data-theme="light"] {
+  --bodyBGColor: #ffffff;
+  --appBGColor: #ffffff;
+  --textColor: #000000;
+  --padsBGColor: #708090;
+  --btnBGColor: #ffffff;
+  --btnBorderColor: #708090;
+  --optionsDividerColor: #708090;
+  --sliderTrackColor: #708090;
+}
+
+:root[data-theme="dark"] {
+  --bodyBGColor: #1a1a1a;
+  --appBGColor: #222325;
+  --textColor: #6d6d6d;
+  --padsBGColor: #24292e;
+  --btnBGColor: #414455;
+  --btnBorderColor: #2e373f;
+  --optionsDividerColor: #2e373f;
+  --sliderTrackColor: #414455;
+}
+
+:root {
+  --highlightColor: #00ffff;
+  --pink: #ff99ff;
+  --green: #66ff99;
+  --orange: #ff9900;
+  --blue: #0099ff;
+  --white: #ffffff;
+  --grey: #708090;
+  --black: #000000;
+  --disabledTextColor: #c7c7c7;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  font: 12px arial, sans-serif;
+  font-weight: bold;
+  color: var(--textColor);
+  background-color: var(--bodyBGColor);
+  cursor: default;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.splash-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60vh;
+  background-color: rgb(255 255 255 / 0.8);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+  text-align: center;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.8s;
+}
+
+.splash-container.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash-content {
+  position: absolute;
+  top: 37px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 370px;
+  height: 360px;
+  padding-top: 67px;
+  font-size: 14px;
+  background-color: rgb(255 255 255 / 72%);
+}
+
+.splash-content p {
+  margin: 18px;
+}
+
+.keypad-info {
+  text-align: left;
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+  row-gap: 4px;
+  margin: 20px 35px 30px 35px;
+}
+
+.keypad-info div {
+  width: 94px;
+}
+
+input[type="range"] {
+  height: 20px;
+  -webkit-appearance: none;
+  width: 100%;
+  background-color: var(--appBGColor);
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  /* animate: 0.2s; */
+  background: var(--sliderTrackColor);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  height: 20px;
+  width: 8px;
+  background: var(--black);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -8px;
+}
+
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: var(--sliderTrackColor);
+}
+
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  /* animate: 0.2s; */
+  background: var(--sliderTrackColor);
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 30px;
+  width: 15px;
+  background-color: var(--appBGColor);
+  cursor: pointer;
+}
+
+input[type="range"]::-ms-track {
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  /* animate: 0.2s; */
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type="range"]::-ms-fill-lower {
+  background: var(--sliderTrackColor);
+}
+
+input[type="range"]::-ms-fill-upper {
+  background: var(--sliderTrackColor);
+}
+
+input[type="range"]::-ms-thumb {
+  margin-top: 1px;
+  height: 30px;
+  width: 15px;
+  background-color: var(--appBGColor);
+  cursor: pointer;
+}
+
+input[type="range"]:focus::-ms-fill-lower {
+  background: var(--sliderTrackColor);
+}
+
+input[type="range"]:focus::-ms-fill-upper {
+  background: var(--sliderTrackColor);
+}
+
+.container {
+  margin: 40px auto 0 auto;
+  width: 396px;
+}
+
+#drumMachineContainer {
+  position: relative;
+  width: 100%;
+}
+
+header {
+  position: relative;
+  height: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--bodyBGColor);
+  z-index: 1;
+}
+
+#logo {
+  margin: 0;
+  padding: 0;
+  float: left;
+  width: 25%;
+  color: var(--textColor);
+  cursor: pointer;
+  font: 12px arial, sans-serif;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+#logo:hover {
+  color: var(--highlightColor);
+}
+
+button {
+  font-weight: bold;
+  padding: 4px 8px;
+  border: solid 4px var(--btnBorderColor);
+  background-color: var(--btnBGColor);
+  cursor: pointer;
+}
+
+.notifier {
+  position: absolute;
+  top: 40px;
+  right: 0px;
+  padding: 2px 4px;
+  height: 40px;
+  text-align: right;
+  color: var(--textColor);
+  border: solid 4px var(--black);
+  z-index: 1;
+  -webkit-transition-property: top;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-delay: 0.5s;
+  -webkit-transition-timing-function: linear;
+  transition-property: top;
+  transition-duration: 1s;
+  transition-delay: 0.5s;
+  transition-timing-function: linear;
+}
+
+.notifier.show {
+  top: -4px;
+  -webkit-transition-property: top;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-delay: 0.5s;
+  -webkit-transition-timing-function: linear;
+  transition-property: top;
+  transition-duration: 0.5s;
+  transition-delay: 0.5s;
+  transition-timing-function: linear;
+}
+
+.sectionPads {
+  position: relative;
+  background-color: var(--appBGColor);
+  z-index: 2;
+}
+
+ul {
+  list-style-type: none;
+  border: solid 6px var(--black);
+  padding: 20px;
+  margin: 0;
+}
+
+.padContainer {
+  display: inline-block;
+}
+
+.pad {
+  position: relative;
+  display: inline-block;
+  width: 112px;
+  height: 112px;
+  background-color: var(--padsBGColor);
+  border: solid 6px var(--black);
+  cursor: pointer;
+}
+
+.pad span {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  display: none;
+}
+
+li.padControlRow {
+  display: none;
+}
+
+.padControl {
+  position: relative;
+  display: inline-block;
+  width: 112px;
+  height: 36px;
+  margin: 2px 0 8px 0;
+}
+
+.padControl input {
+  width: 34px;
+}
+
+.padVol {
+  position: absolute;
+  top: 15px;
+  left: 0px;
+}
+
+.padPan {
+  position: absolute;
+  top: 15px;
+  left: 42px;
+}
+
+.release {
+  position: absolute;
+  top: 15px;
+  left: 88px;
+  padding: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.padControl span:nth-child(1) {
+  position: absolute;
+  top: 0px;
+  left: 3px;
+}
+
+.padControl span:nth-child(2) {
+  position: absolute;
+  top: 0px;
+  left: 44px;
+}
+
+.padControl span:nth-child(3) {
+  position: absolute;
+  top: 0px;
+  left: 87px;
+}
+
+/* Controls */
+
+.sectionOptions {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: var(--appBGColor);
+  border: solid 6px var(--black);
+  margin-top: 10px;
+  padding: 20px;
+  z-index: 0;
+  -webkit-transition-property: top;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-delay: 0.5s;
+  -webkit-transition-timing-function: linear;
+  transition-property: top;
+  transition-duration: 1s;
+  transition-delay: 0.5s;
+  transition-timing-function: linear;
+}
+
+.sectionOptions.show {
+  top: 420px;
+  -webkit-transition-property: top;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-delay: 0.5s;
+  -webkit-transition-timing-function: linear;
+  transition-property: top;
+  transition-duration: 0.5s;
+  transition-delay: 0.5s;
+  transition-timing-function: linear;
+}
+
+.optionsRow {
+  position: relative;
+  border-top: solid 4px var(--optionsDividerColor);
+  padding-top: 14px;
+  height: 52px;
+}
+
+.optionsRow:nth-child(1) {
+  border-top: none;
+  padding-top: 0px;
+  margin-bottom: 0px;
+}
+.optionsRow:nth-child(2) {
+  margin-bottom: 31px;
+}
+
+.optionsRow:nth-child(3) {
+  margin-bottom: 14px;
+}
+
+.optionsRow span {
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.sectionOptions ul {
+  border: none;
+  padding: 0px;
+}
+
+.label {
+  margin-bottom: 6px;
+}
+
+#btnPadCtrls {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+/* verb section */
+
+#btnReverb {
+  position: absolute;
+  top: 0px;
+  left: 175px;
+}
+
+/* comp section */
+
+#btnComp {
+  position: absolute;
+  top: 0px;
+  left: 100px;
+  width: 71px;
+}
+
+/* main vol control */
+
+#mainVolContainer {
+  position: absolute;
+  top: 0px;
+  left: 270px;
+  width: 75px;
+  height: 19px;
+}
+
+#mainVolContainer span {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.optionsRow input[type="range"]::-webkit-slider-runnable-track {
+  width: 70px;
+}
+
+.optionsRow input[type="range"]::-moz-range-track {
+  width: 70px;
+}
+
+.optionsRow input[type="range"]::-ms-track {
+  width: 70px;
+}
+
+.optionsRow input {
+  position: absolute;
+  top: 16px;
+  right: 0px;
+  width: 70px;
+}
+
+/* kit selector */
+
+.kitSelector li {
+  display: inline-block;
+  color: var(--black);
+  background-color: var(--btnBGColor);
+  border: solid 4px var(--btnBorderColor);
+  padding: 4px 7px;
+  cursor: pointer;
+}
+
+.kitSelector li.selected {
+  border: solid 4px var(--highlightColor);
+}
+
+/* color selector */
+
+ul.colors {
+  width: 184px;
+  display: inline-block;
+}
+
+ul.colors li {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border: solid 4px var(--btnBorderColor);
+  cursor: pointer;
+}
+
+ul.colors li.selected {
+  border: solid 4px var(--highlightColor);
+}
+
+ul.colors li:nth-child(1) {
+  background-color: var(--highlightColor);
+}
+
+ul.colors li:nth-child(2) {
+  background-color: var(--pink);
+}
+
+ul.colors li:nth-child(3) {
+  background-color: var(--green);
+}
+
+ul.colors li:nth-child(4) {
+  background-color: var(--orange);
+}
+
+ul.colors li:nth-child(5) {
+  background-color: var(--blue);
+}
+
+.show {
+  display: block;
+}
+
+.gui-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#btnTheme {
+  width: 65px;
+}

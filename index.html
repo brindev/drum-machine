@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Drum Machine</title>
+    <link rel="stylesheet" type="text/css" href="styles\style.css" />
+  </head>
+
+  <body>
+    <!-- audio sources -->
+    <audio
+      id="source_kick"
+      class="audio-source"
+      src="res\kit808\808_kik.wav"
+    ></audio>
+    <audio
+      id="source_snare"
+      class="audio-source"
+      src="res\kit808\808_sn.wav"
+    ></audio>
+    <audio
+      id="source_hihat"
+      class="audio-source"
+      src="res\kit808\808_hh.wav"
+    ></audio>
+    <audio
+      id="source_tom1"
+      class="audio-source"
+      src="res\kit808\808_tom1.wav"
+    ></audio>
+    <audio
+      id="source_sideStick"
+      class="audio-source"
+      src="res\kit808\808_sidestick.wav"
+    ></audio>
+    <audio
+      id="source_hihatOpen"
+      class="audio-source"
+      src="res\kit808\808_hhopen.wav"
+    ></audio>
+    <audio
+      id="source_tom2"
+      class="audio-source"
+      src="res\kit808\808_tom2.wav"
+    ></audio>
+    <audio
+      id="source_clap"
+      class="audio-source"
+      src="res\kit808\808_clap.wav"
+    ></audio>
+    <audio
+      id="source_cymbal"
+      class="audio-source"
+      src="res\kit808\808_crash.wav"
+    ></audio>
+
+    <div class="splash-container">
+      <div class="splash-content">
+        <p>Click on "DRUM MACHINE" for options</p>
+        <p>Keypad mapping:</p>
+        <div class="keypad-info">
+          <div>7: Kick</div>
+          <div>8: Snare</div>
+          <div>9: HiHat</div>
+          <div>4: Tom 1</div>
+          <div>5: Side-stick</div>
+          <div>6: Open HiHat</div>
+          <div>1: Tom 2</div>
+          <div>2: Clap</div>
+          <div>3: Cymbal</div>
+        </div>
+        <button type="button" id="splashbtn">Got it!</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="drumMachineContainer">
+        <header>
+          <h1 id="logo">DRUM MACHINE</h1>
+          <div class="notifier"></div>
+        </header>
+
+        <!-- drum pad interface -->
+        <section class="sectionPads">
+          <ul class="pads">
+            <li class="padRow">
+              <div id="kick" class="pad"><span class="hide">KIK</span></div>
+              <div id="snare" class="pad"><span class="hide">SNARE</span></div>
+              <div id="hihat" class="pad"><span class="hide">HIHAT</span></div>
+            </li>
+
+            <li class="padControlRow hide">
+              <div class="padControl">
+                <span>VOL</span><span>PAN</span><span>REL</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value="1"
+                  id="kickVol"
+                  class="padVol"
+                />
+                <input
+                  type="range"
+                  min="-1"
+                  max="1"
+                  step="0.01"
+                  value="0"
+                  id="kickPan"
+                  class="padPan"
+                />
+                <button id="releaseKick" class="release" data-state=""></button>
+              </div>
+              <div class="padControl">
+                <span>VOL</span><span>PAN</span><span>REL</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value="1"
+                  id="snareVol"
+                  class="padVol"
+                />
+                <input
+                  type="range"
+                  min="-1"
+                  max="1"
+                  step="0.01"
+                  value="0"
+                  id="snarePan"
+                  class="padPan"
+                />
+                <button
+                  id="releaseSnare"
+                  class="release"
+                  data-state=""
+                ></button>
+              </div>
+              <div class="padControl">
+                <span>VOL</span><span>PAN</span><span>REL</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value="1"
+                  id="hihatVol"
+                  class="padVol"
+                />
+                <input
+                  type="range"
+                  min="-1"
+                  max="1"
+                  step="0.01"
+                  value="0"
+                  id="hihatPan"
+                  class="padPan"
+                />
+                <button
+                  id="releaseHiHat"
+                  class="release"
+                  data-state=""
+                ></button>
+              </div>
+            </li>
+
+            <li class="padRow">
+              <div id="tom1" class="pad"><span class="hide">TOM 1</span></div>
+              <div id="sideStick" class="pad">
+                <span class="hide">SIDE-STICK</span>
+              </div>
+              <div id="hihatOpen" class="pad">
+                <span class="hide">OPEN HIHAT</span>
+              </div>
+            </li>
+
+            <li class="padControlRow hide">
+              <div class="padControl">
+                <span>VOL</span><span>PAN</span><span>REL</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value="1"
+                  id="tom1Vol"
+                  class="padVol"
+                />
+                <input
+                  type="range"
+                  min="-1"
+                  max="1"
+                  step="0.01"
+                  value="0"
+                  id="tom1Pan"
+                  class="padPan"
+                />
+                <button id="releaseTom1" class="release" data-state=""></button>
+              </div>
+              <div class="padControl">
+                <span>VOL</span><span>PAN</span><span>REL</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value="1"
+                  id="sideStickVol"
+                  class="padVol"
+                />
+                <input
+                  type="range"
+                  min="-1"
+                  max="1"
+                  step="0.01"
+                  value="0"
+                  id="sideStickPan"
+                  class="padPan"
+                />
+                <button
+                  id="releaseSideStick"
+                  class="release"
+                  data-state=""
+                ></button>
+              </div>
+              <div class="padControl">
+                <span>VOL</span><span>PAN</span><span>REL</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value="1"
+                  id="hiHatOpenVol"
+                  class="padVol"
+                />
+                <input
+                  type="range"
+                  min="-1"
+                  max="1"
+                  step="0.01"
+                  value="0"
+                  id="hiHatOpenPan"
+                  class="padPan"
+                />
+                <button
+                  id="releaseHiHatOpen"
+                  class="release"
+                  data-state="selected"
+                ></button>
+              </div>
+            </li>
+
+            <li class="padRow">
+              <div id="tom2" class="pad"><span class="hide">TOM 2</span></div>
+              <div id="clap" class="pad"><span class="hide">CLAP</span></div>
+              <div id="cymbal" class="pad">
+                <span class="hide">CYMBAL</span>
+              </div>
+            </li>
+
+            <li class="padControlRow hide">
+              <div class="padControl">
+                <span>VOL</span><span>PAN</span><span>REL</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value="1"
+                  id="tom2Vol"
+                  class="padVol"
+                />
+                <input
+                  type="range"
+                  min="-1"
+                  max="1"
+                  step="0.01"
+                  value="0"
+                  id="tom2Pan"
+                  class="padPan"
+                />
+                <button id="releaseTom2" class="release" data-state=""></button>
+              </div>
+              <div class="padControl">
+                <span>VOL</span><span>PAN</span><span>REL</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value="1"
+                  id="clapVol"
+                  class="padVol"
+                />
+                <input
+                  type="range"
+                  min="-1"
+                  max="1"
+                  step="0.01"
+                  value="0"
+                  id="clapPan"
+                  class="padPan"
+                />
+                <button id="releaseBell" class="release" data-state=""></button>
+              </div>
+              <div class="padControl">
+                <span>VOL</span><span>PAN</span><span>REL</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value="1"
+                  id="cymbalVol"
+                  class="padVol"
+                />
+                <input
+                  type="range"
+                  min="-1"
+                  max="1"
+                  step="0.01"
+                  value="0"
+                  id="cymbalPan"
+                  class="padPan"
+                />
+                <button
+                  id="releaseCymbal"
+                  class="release"
+                  data-state="selected"
+                ></button>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Options -->
+
+        <!-- pad control, compressor, reverb and main gain -->
+        <section class="sectionOptions">
+          <div class="optionsRow">
+            <button id="btnPadCtrls" class="btn" data-state="">
+              Pad Ctrls
+            </button>
+            <button id="btnComp" class="btn" data-state="">Comp</button>
+            <button id="btnReverb" class="btn" data-state="">Reverb</button>
+            <div id="mainVolContainer">
+              <span>Main Volume</span>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value="1"
+                class="mainVolume"
+              />
+            </div>
+          </div>
+
+          <!-- drum kit selector -->
+          <div class="optionsRow">
+            <div class="label">Drumkit</div>
+            <ul class="kitSelector">
+              <li data-value="808" data-state="selected">808 Kit</li>
+              <li data-value="909" data-state="">909 Kit</li>
+              <li data-value="Linn" data-state="">Linn Kit</li>
+              <li data-value="CR78" data-state="">CR78 Kit</li>
+              <li data-value="Live" data-state="">Live Kit</li>
+            </ul>
+          </div>
+
+          <!-- colors/themes -->
+          <div class="optionsRow">
+            <div class="label">Color</div>
+            <div class="gui-container">
+              <ul class="colors">
+                <li data-value="#00ffff" data-state="selected">&nbsp;</li>
+                <li data-value="#ff99ff" data-state="">&nbsp;</li>
+                <li data-value="#66ff99" data-state="">&nbsp;</li>
+                <li data-value="#ff9900" data-state="">&nbsp;</li>
+                <li data-value="#0099ff" data-state="">&nbsp;</li>
+              </ul>
+
+              <div class="gui-btn-container">
+                <button id="btnNames" class="btn" data-state="">Names</button>
+                <button id="btnTheme">Dark</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="scripts\main.js"></script>
+  </body>
+</html>
