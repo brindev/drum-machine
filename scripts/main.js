@@ -435,7 +435,7 @@ btnPadCtrls.addEventListener("click", function () {
     setSelectedState(this, false);
     this.style.backgroundColor = "#ffffff";
     this.style.border = "solid 4px slategrey";
-    sectionOptions.style.top = "418px";
+    sectionOptions.style.top = "413px";
   }
   sectionOptions.classList.toggle("pads-extended");
   updateColors();
