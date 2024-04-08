@@ -245,7 +245,7 @@ function loadDrumkit(res = "808") {
 
 function play(sound, el) {
   sound.play();
-  el.style.borderColor = color;
+  el.style.border = `solid 6px ${color}`;
 }
 
 function stop(sound, el, release) {
@@ -254,7 +254,7 @@ function stop(sound, el, release) {
     sound.currentTime = 0;
   }
 
-  el.style.borderColor = "black";
+  el.style.border = `solid 6px var(--black)`;
 }
 
 /* pads mousedown, mouseup events */
@@ -262,7 +262,6 @@ function stop(sound, el, release) {
 pads.forEach((el, i) => {
   el.addEventListener("mousedown", function () {
     play(audioSourcesEl[i], this);
-    //play(audioSources[i], this);
   });
   el.addEventListener("mouseup", function () {
     stop(audioSourcesEl[i], this, release[i]);

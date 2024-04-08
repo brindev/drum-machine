@@ -292,6 +292,7 @@ ul {
   background-color: var(--padsBGColor);
   border: solid 6px var(--black);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .pad span {
